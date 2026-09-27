@@ -253,6 +253,7 @@ Los resultados, con video de cada prueba, quedan en el panel de Sauce Labs (Auto
 | `'npm' no se reconoce como un comando` | Cerrar y volver a abrir la terminal después de instalar Node.js |
 | `No module named selenium` / `No module named pytest` | Ejecutar con `.venv\Scripts\python.exe`, no solo `python`, o repetir la instalación de 4.1 |
 | `SessionNotCreatedException` o error de driver | Actualizar Google Chrome; Selenium Manager descarga el driver correspondiente (requiere internet) |
+| `npm install` muestra avisos (`npm warn ...`) | Son informativos y no afectan la ejecución; solo importa que no aparezca `npm error` |
 | La primera prueba de API falla por tiempo | restful-booker puede tardar en responder la primera vez; volver a ejecutar `npm test` |
 | El navegador abre y cierra muy rápido | Es normal; usar `--headed --lento 1.5` para verlo con calma |
 | En PowerShell no se puede activar el entorno virtual | No es necesario activarlo; los comandos de esta guía usan `.venv\Scripts\python.exe` directamente |
