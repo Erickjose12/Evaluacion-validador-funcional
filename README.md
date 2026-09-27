@@ -231,15 +231,18 @@ Durante las pruebas se encontraron estas diferencias frente al estándar HTTP. L
 
 Las pruebas de interfaz también pueden correr en la nube de Sauce Labs:
 
-1. Definir las variables de entorno con las credenciales de Sauce Labs (Windows):
-   ```bash
-   setx SAUCE_USERNAME "tu_usuario"
-   setx SAUCE_ACCESS_KEY "tu_access_key"
-   ```
-2. Abrir una terminal nueva y ejecutar desde `ui`:
-   ```bash
-   .venv\Scripts\python.exe -m pytest --remote
-   ```
+**Paso 1.** Definir las variables de entorno con las credenciales de Sauce Labs (Windows):
+
+```bash
+setx SAUCE_USERNAME "tu_usuario"
+setx SAUCE_ACCESS_KEY "tu_access_key"
+```
+
+**Paso 2.** Abrir una terminal nueva y ejecutar desde `ui`:
+
+```bash
+.venv\Scripts\python.exe -m pytest --remote
+```
 
 Los resultados, con video de cada prueba, quedan en el panel de Sauce Labs (Automated → Test Results).
 
