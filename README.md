@@ -2,6 +2,8 @@
 
 Pruebas automatizadas de la **Parte B2** de la evaluación técnica de e-Solutions, S.A.
 
+**Autor:** Erick José Estrada Barrios
+
 | Suite | Sitio probado | Qué valida |
 |---|---|---|
 | **Interfaz** (`ui/`) | https://www.saucedemo.com | Login inválido con validación del mensaje de error (4 variantes) y flujo login → agregar producto → checkout → confirmación |
