@@ -4,6 +4,8 @@ Pruebas automatizadas de la **Parte B2** de la evaluación técnica de e-Solutio
 
 **Autor:** Erick José Estrada Barrios
 
+**Repositorio:** https://github.com/Erickjose12/Evaluacion-validador-funcional
+
 | Suite | Sitio probado | Qué valida |
 |---|---|---|
 | **Interfaz** (`ui/`) | https://www.saucedemo.com | Login inválido con validación del mensaje de error (4 variantes) y flujo login → agregar producto → checkout → confirmación |
@@ -64,8 +66,8 @@ cd ruta\donde\descomprimiste\automatizacion
 **Opción B: desde el repositorio Git.**
 
 ```bash
-git clone <URL-del-repositorio>
-cd automatizacion
+git clone https://github.com/Erickjose12/Evaluacion-validador-funcional.git
+cd Evaluacion-validador-funcional
 ```
 
 Estructura del proyecto:
