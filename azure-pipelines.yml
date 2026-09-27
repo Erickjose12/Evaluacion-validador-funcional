@@ -1,0 +1,78 @@
+# Ejecuta las pruebas de UI (Selenium + pytest) y de API (Jest),
+# publica los resultados en formato JUnit y detiene el pipeline si falla cualquier prueba.
+
+trigger:
+  - main
+
+pr:
+  - main
+
+pool:
+  vmImage: ubuntu-latest   # trae Google Chrome preinstalado
+
+stages:
+  - stage: Pruebas
+    jobs:
+      - job: API
+        displayName: Pruebas de API (Jest)
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "22.x"
+
+          - script: npm ci
+            workingDirectory: api
+            displayName: Instalar dependencias
+
+          - script: npm run test:ci
+            workingDirectory: api
+            displayName: Ejecutar pruebas de API
+
+          - task: PublishTestResults@2
+            displayName: Publicar resultados JUnit (API)
+            condition: succeededOrFailed()      # publica aunque haya fallos
+            inputs:
+              testResultsFormat: JUnit
+              testResultsFiles: api/reports/junit-api.xml
+              testRunTitle: API - restful-booker
+              failTaskOnFailedTests: true
+
+      - job: UI
+        displayName: Pruebas de interfaz (Selenium)
+        steps:
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: "3.12"
+
+          - script: pip install -r requirements.txt
+            workingDirectory: ui
+            displayName: Instalar dependencias
+
+          - script: python -m pytest --junitxml=reports/junit-ui.xml
+            workingDirectory: ui
+            displayName: Ejecutar pruebas de UI (Chrome headless)
+
+          - task: PublishTestResults@2
+            displayName: Publicar resultados JUnit (UI)
+            condition: succeededOrFailed()
+            inputs:
+              testResultsFormat: JUnit
+              testResultsFiles: ui/reports/junit-ui.xml
+              testRunTitle: UI - saucedemo
+              failTaskOnFailedTests: true
+
+          - task: PublishPipelineArtifact@1
+            displayName: Capturas de pruebas fallidas
+            condition: failed()
+            inputs:
+              targetPath: ui/reports
+              artifact: capturas-ui
+
+  # El despliegue solo corre si TODAS las pruebas pasaron
+  - stage: Desplegar
+    dependsOn: Pruebas
+    condition: succeeded()
+    jobs:
+      - job: Despliegue
+        steps:
+          - script: echo "Aqui iria el despliegue; solo se ejecuta si las pruebas pasaron."

@@ -1,0 +1,22 @@
+{
+  "name": "pruebas-api-restful-booker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pruebas de API con Jest sobre restful-booker.herokuapp.com",
+  "scripts": {
+    "test": "jest",
+    "test:ci": "jest --ci"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testTimeout": 30000,
+    "reporters": [
+      "default",
+      ["jest-junit", { "outputDirectory": "reports", "outputName": "junit-api.xml" }]
+    ]
+  },
+  "devDependencies": {
+    "jest": "^30.0.0",
+    "jest-junit": "^16.0.0"
+  }
+}
