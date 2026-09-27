@@ -27,6 +27,14 @@ python -m venv .venv
 
 En macOS/Linux usa `.venv/bin/python` en lugar de `.venv\Scripts\python.exe`.
 
+**Modo demostración** (para presentar la prueba a una persona): resalta en rojo cada elemento antes de usarlo y hace una pausa después de cada acción.
+
+```bash
+.venv\Scripts\python.exe -m pytest --headed --lento 1.5
+```
+
+El número son los segundos de pausa. Se implementa con un `EventFiringWebDriver` en `conftest.py`, así que los Page Objects y las pruebas no cambian. Sin `--lento` las pruebas no tienen ninguna pausa fija.
+
 **Opcional, en Sauce Labs:** define `SAUCE_USERNAME` y `SAUCE_ACCESS_KEY` como variables de entorno y ejecuta `pytest --remote`.
 
 ### Diseño
